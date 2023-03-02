@@ -1,4 +1,13 @@
-import { Controller, Get, HttpCode, Param, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Headers,
+  HttpCode,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { query } from 'express';
 import { AppService } from './app.service';
 
@@ -21,5 +30,15 @@ export class AppController {
   getDataQuery(@Query() query: Record<string, any>) {
     console.log(query);
     return `succuss`;
+  }
+  @Get('/users')
+  getHeaderData(@Headers() headers: string) {
+    console.log(headers);
+    return `succuss`;
+  }
+  @Post('/videos')
+  getBodyData(@Body() requsteddata: Record<string, any>) {
+    console.log(requsteddata);
+    return { succuss: true };
   }
 }
